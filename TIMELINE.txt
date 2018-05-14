@@ -1,0 +1,94 @@
+		<!-- BEGIN TIMELINE SECTION -->
+		<section id="loveline" class="no-padding-top divider-bottom-2 divider-pattern divider-bg-color">
+			<div class="container">
+				<div class="row">
+					<div class="timeline">
+						<div class="year" data-animation-direction="from-top" data-animation-delay="250"><span class="ribbon">2014</span></div>
+						
+						<div class="event_left" data-animation-direction="from-right" data-animation-delay="250">
+							<div class="event_panel">
+								<h3>03 May: He saw Her</h3>
+								<p>Derek and Emma crossed paths multiple times in college, but it wasn't until after Derek graduated that they met through mutual friends from Oregon State University. The first night they officially met was at Kell's Irish Pub, downtown Portland.</p>
+								<p>Derek spotted Emma and asked their mutual friend Tom about her. At the end of the night, Tom insisted that Derek and Emma talk on the phone, so he called Emma, handed Derek the phone, and the rest is history...</p>
+							</div>
+						</div>
+						
+						<div class="event_right" data-animation-direction="from-left" data-animation-delay="550">
+							<div class="event_panel">
+								<h3>10 June: The First date</h3>
+								<p>Derek took Emma to Thirst Wine Bar on the Willamette River for their first date in June of 2014, just before Sahra went back to OSU for her last year of school. </p>
+								<p>After dinner and drinks, they decided to walk the docks on the Portland Waterfront, but Emma couldn't even imagine what awaited her. Derek had also planned a romantic boat trip that turned out to be one of the most fun and unforgettable moments of their lives.</p>
+							</div>
+						</div>
+						
+						<div class="event_left" data-animation-direction="from-right" data-animation-delay="350">
+							<div class="event_panel videoEmbed">
+								<h3>28 June: The First Kiss</h3>
+								<p>Derek was extremely nervous. He was afraid to expose his feelings to Emma, but didn’t want to risk staying in the friend zone. So it was now or never! After all, Emma was the one.  After a pleasant walk in the park, it was time to say goodbye. Just as she started to walk away from him, he grabbed her waist and pulled her close. Then, he kissed her with passion. "It was about time!" she said. It was...PERFECT!</p>
+								<img src="http://placehold.it/750x520" alt="" />
+							</div>
+						</div>
+						
+						<div class="event_right" data-animation-direction="from-left" data-animation-delay="650">
+							<div class="event_panel">
+								<h3>19 November: The First Vacations</h3>
+								<p>They had taken overnight trips before, but this was their first huge vacations outside the USA. Emma and Derek travelled to the Baltic region and visited a number of countries including Iceland, Finland, Denmark, Russia, Poland and Germany . It was a 24 day fabulous trip! It was super intense but so rewarding for both. </p>
+								
+								<div class="owl-carousel timeline-gallery">
+									<div class="item">
+										<a href="http://placehold.it/750x500" data-gal="prettyPhoto[gallery-timeline]" title="Our Vacations"><span class="btn btn-default2">+</span></a>
+										<img src="http://placehold.it/300x300" alt="" />
+									</div>
+					
+									<div class="item">
+										<a href="http://placehold.it/750x500" data-gal="prettyPhoto[gallery-timeline]" title="Our Vacations"><span class="btn btn-default2">+</span></a>
+										<img src="http://placehold.it/300x300" alt="" />
+									</div>
+									
+									<div class="item">
+										<a href="http://placehold.it/750x500" data-gal="prettyPhoto[gallery-timeline]" title="Our Vacations"><span class="btn btn-default2">+</span></a>
+										<img src="http://placehold.it/300x300" alt="" />
+									</div>
+									<div class="item">
+										<a href="http://placehold.it/750x500" data-gal="prettyPhoto[gallery-timeline]" title="Our Vacations"><span class="btn btn-default2">+</span></a>
+										<img src="http://placehold.it/300x300" alt="" />
+									</div>
+									<div class="item">
+										<a href="http://placehold.it/750x500" data-gal="prettyPhoto[gallery-timeline]" title="Our Vacations"><span class="btn btn-default2">+</span></a>
+										<img src="http://placehold.it/300x300" alt="" />
+									</div>
+									<div class="item">
+										<a href="http://placehold.it/750x500" data-gal="prettyPhoto[gallery-timeline]" title="Our Vacations"><span class="btn btn-default2">+</span></a>
+										<img src="http://placehold.it/300x300" alt="" />
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="year" data-animation-direction="from-top" data-animation-delay="250"><span class="ribbon">2015</span></div>
+						
+						<div class="event_left" data-animation-direction="from-right" data-animation-delay="450">
+							<div class="event_panel">
+								<h3>14 April: They moved together</h3>
+								<p>Just a year after they met, Derek and Emma finally decided to move in together. Although it seemed a hasty decision, they thought it made perfect sense at that point in their lives. </p>
+								<p>Due to Emma's work, which required some schedule flexibility, it began to be increasingly difficult for them to be with one another. It was at this momment that both realized they needed (more than ever), the support and comfort that only they could give each other.</p>
+								<p>With the help of their families, they moved forward with this important decision and bought their first home together. And I must add that ... it was the best decision they ever made!</p>
+							</div>
+						</div>
+						
+						<div class="event_right" data-animation-direction="from-left" data-animation-delay="750">
+							<div class="event_panel">
+								<h3>04 July: She said yes!</h3>
+								<p>So how did Derek pop the question? On a Cruise ... off the shore ... of the Cayman Islands! (YES!) On their way down to dinner with the Ship's Captain, Derek's nerves got the best of him and he pulled Emma back to the room and straight onto the balcony for the best proposal a girl could ask for!</p>
+								<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/pyFBrlyj1p0?start=4" allowfullscreen></iframe> -->
+							</div>
+						</div>
+					</div>
+					
+					<div class="timeline_footer">
+						<div class="punchline">And so the <span>Adventure<br>begins</span></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END TIMELINE SECTION -->

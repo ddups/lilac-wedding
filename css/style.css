@@ -4,8 +4,6 @@
 * Theme Name: Lilac
 * Version: 1.0.0
 */
-
-
 /* Table of Content
 ==================================================
 	#Variables
@@ -28,16 +26,19 @@
 	#Footer
 	#PrettyPhoto
 	#Media Queries */
-    
-    
-
+/* Variables
+================================================== */
+/* Mixins
+================================================== */
+/* A helper mixin for applying high-resolution background images (http://www.retinajs.com) */
 /* Imports
 ================================================== */
-@import url('font-awesome.min.css');    /* import FontAwesome stylesheet */
-@import url('lilac.css');               /* import FontAwesome stylesheet */
-@import url('owl.transitions.css');     /* import Owl Carousel transitions */
-
-
+@import url('font-awesome.min.css');
+/* import FontAwesome stylesheet */
+@import url('lilac.css');
+/* import FontAwesome stylesheet */
+@import url('owl.transitions.css');
+/* import Owl Carousel transitions */
 /* #Typography
 ================================================== */
 a:focus {
@@ -1151,7 +1152,7 @@ fieldset[disabled] .btn.ribbon.active {
   z-index: 0;
 }
 .divider-bottom-2 {
-  padding-bottom: 485px;
+  padding-bottom: 625px;
 }
 .divider-bottom-2::after {
   content: "";
@@ -1227,6 +1228,42 @@ fieldset[disabled] .btn.ribbon.active {
   background-image: url('../images/divider_5.png');
   z-index: 0;
 }
+.divider-bottom-5 {
+  padding-bottom: 20px;
+}
+.divider-bottom-5::after {
+  content: "";
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-image: url('../images/divider_5.png');
+  z-index: -1;
+}
+.divider-bottom-5.divider-bg-color::after {
+  background-color: #ad9fb3;
+}
+.divider-bottom-5.divider-pattern::before {
+  content: "";
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-repeat: repeat;
+  background-position: top center;
+  background-image: url('../images/pattern.png');
+  z-index: -1;
+}
+.divider-bottom-5.divider-pattern.divider-bg-color::after {
+  background-color: transparent;
+}
+.divider-bottom-5.divider-pattern.divider-bg-color::before {
+  background-color: #ad9fb3;
+}
 /* #Header
 ================================================== */
 #header {
@@ -1283,6 +1320,9 @@ fieldset[disabled] .btn.ribbon.active {
 .navbar-nav > li > a.active {
   background-color: transparent;
   color: #ad9fb3;
+}
+ul.nav li.dropdown:hover ul.dropdown-menu {
+  display: block;
 }
 .navbar-nav > li.dropdown > a .caret {
   border-right: 3px solid rgba(0, 0, 0, 0);
@@ -1699,7 +1739,7 @@ fieldset[disabled] .btn.ribbon.active {
   z-index: -10;
 }
 #supersized li.image-loading {
-  background: #111111 url(../images/progress.gif) no-repeat center center;
+  background: #111 url(../images/progress.gif) no-repeat center center;
   width: 100%;
   height: 100%;
 }
@@ -1939,7 +1979,7 @@ fieldset[disabled] .btn.ribbon.active {
   background-image: url("../images/quote-img.jpg");
   font-size: 38pt;
   line-height: 38pt;
-  padding: 100px 0;
+  padding: 100px 0 150px 0;
   text-align: center;
   color: #fff;
   font-family: 'Dancing Script', cursive;
@@ -2412,113 +2452,12 @@ fieldset[disabled] .btn.ribbon.active {
 }
 /* #Wedding Location
 ================================================== */
-#map_canvas {
+.map {
+  display: block;
+  border: 0;
+  margin: 0 auto;
   width: 100%;
-  height: 440px;
-  position: relative;
-}
-#map_canvas img {
-  max-width: none;
-}
-.marker {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  text-align: center;
-  background-color: #fff;
-  color: #ad9fb3;
-  border: 2px solid #ad9fb3;
-  font-size: 16pt;
-  line-height: 35px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-.marker::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 11px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 12px 9px 0 9px;
-  border-color: #ffffff transparent transparent transparent;
-  line-height: 0px;
-  _border-color: #ffffff #000000 #000000 #000000;
-  _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-.marker::before {
-  content: "";
-  position: absolute;
-  bottom: -11px;
-  left: 10px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 12px 10px 0 10px;
-  border-color: #ad9fb3 transparent transparent transparent;
-  line-height: 0px;
-  _border-color: #ad9fb3 #000000 #000000 #000000;
-  _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-.marker:hover {
-  background-color: #ad9fb3;
-  border-color: #fff;
-  color: #fff;
-}
-.marker:hover::after {
-  border-color: #ad9fb3 transparent transparent transparent;
-}
-.marker:hover::before {
-  border-color: #ffffff transparent transparent transparent;
-}
-.marker > div {
-  margin: 0;
-  padding: 0;
-}
-.infoWindow {
-  width: 200px;
-}
-.map_pins {
-  width: 100%;
-  border-bottom: 1px solid #e1e1e1;
-  padding: 6px 0;
-  text-align: center;
-  margin-bottom: 35px;
-}
-.pins {
-  list-style: none;
-  color: #adb1b5;
-  padding: 0;
-  margin: 0;
-}
-.pins li {
-  display: inline-block;
-  padding: 0;
-  margin: 6px 25px;
-}
-.pins li i,
-.pins li .fa {
-  margin-right: 5px;
-  font-size: 14pt;
-  position: relative;
-  top: 3px;
+  height: 20em;
 }
 .location-info {
   position: relative;
@@ -2584,7 +2523,7 @@ fieldset[disabled] .btn.ribbon.active {
 /* #Bridesmaids & Groomsmen
 ================================================== */
 #bridesmaidsgroomsmen {
-  background-image: url("../images/wedding-img.jpg");
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .bridesmaids-groomsmen-buttons .btn {
   margin: 10px;
@@ -2678,127 +2617,35 @@ fieldset[disabled] .btn.ribbon.active {
 }
 /* #Wedding Gifts
 ================================================== */
-.wedding-gifts {
-  list-style: none;
-  margin-bottom: 35px;
-  margin-top: 15px;
-  padding: 0;
-}
-.wedding-gifts li {
-  position: relative;
-  min-height: 420px;
-  width: 31.3333%;
-  display: inline-block;
-  float: left;
+#gifts h2 {
   text-align: center;
-  margin: 0 1% 20px 1%;
-  border: 1px solid #ad9fb3;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #ad9fb3;
-  padding: 18px;
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  border-radius: 1px;
 }
-.wedding-gifts li::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1;
-  border: 0px solid transparent;
-  -webkit-box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0);
-  -moz-box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0);
-  box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0);
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+.wedding-gifts div {
+  width: 35%;
+  display: flex;
+  margin: 20px;
+  overflow: hidden;
 }
-.wedding-gifts li:hover::before {
-  background-color: rgba(173, 159, 179, 0.9);
-  border: 15px solid transparent;
-  -webkit-box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.5);
-  -moz-box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.5);
+.wedding-gifts div a {
+  display: block;
+  align-self: center;
 }
-.wedding-gifts li > i {
-  position: relative;
-  font-size: 44pt;
-  margin-top: 120px;
-  margin-bottom: 5px;
-  z-index: 2;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+.wedding-gifts div img {
+  max-width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
 }
-.wedding-gifts li:hover > i {
-  color: #fff;
-  margin-top: 50px;
-}
-.wedding-gifts li h3 {
-  position: relative;
-  z-index: 2;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-.wedding-gifts li:hover h3 {
-  color: #fff;
-}
-.wedding-gifts li .info {
-  position: relative;
-  z-index: 2;
-  -webkit-opacity: 0;
-  -moz-opacity: 0;
-  opacity: 0;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-  margin-top: -80px;
-}
-.wedding-gifts li .info img {
-  background: rgba(255, 255, 255, 0.15);
-  margin: 5px auto;
-  padding: 5px 10px;
-}
-.wedding-gifts li .info .btn {
-  margin: 4px 8px;
-}
-.wedding-gifts li:hover {
-  border: 2px solid rgba(255, 255, 255, 0.5);
-}
-.wedding-gifts li:hover .info {
-  -webkit-opacity: 1;
-  -moz-opacity: 1;
-  opacity: 1;
-  margin-top: 20px;
-}
-.wedding-gifts #gift-list {
-  background-image: url("../images/wedding-gift1.jpg");
-}
-.wedding-gifts #help-wedding {
-  background-image: url("../images/wedding-gift2.jpg");
-}
-.wedding-gifts #help-honeymoon {
-  background-image: url("../images/wedding-gift3.jpg");
+.wedding-gifts div img:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 /* #Gallery
 ================================================== */
 #gallery {
-  background-image: url("../images/img-gallery.jpg");
+  padding-bottom: 235px;
 }
 .gallery-desc {
   color: rgba(255, 255, 255, 0.7) !important;
@@ -2982,6 +2829,176 @@ fieldset[disabled] .btn.ribbon.active {
 .gallery-scroller li.tweet .tweet_text a {
   color: rgba(255, 255, 255, 0.5);
 }
+/* ****GALLERY**** */
+#photo-gallery .container {
+  width: 90%;
+}
+#bio-gallery {
+  width: 100%;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+.slideshow-controls {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  padding: 20px 0;
+}
+.control {
+  margin: 2px 20px;
+  cursor: pointer;
+}
+.control:hover {
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.gallery-image {
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+.bio-display {
+  border: 4px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  padding: 20px;
+}
+.bio-display h2 {
+  width: 100%;
+}
+.mc-gallery {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
+}
+.mc-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.bio-text {
+  display: none;
+  user-select: none;
+}
+.thumb,
+.bio-thumb {
+  overflow: hidden;
+  border-radius: 4px;
+  margin: 4px;
+}
+.thumb {
+  width: 30%;
+  border: 1px solid #ddd;
+}
+.thumb:not(.is-selected) {
+  background: #73627b;
+  -webkit-opacity: .45;
+  -moz-opacity: .45;
+  opacity: 0.45;
+}
+.bio-thumb {
+  width: 13.69%;
+  border: 1px solid #ad9fb3;
+}
+.thumb img,
+.bio-thumb img {
+  max-width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.bio-thumb img:hover {
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.bio-thumb.selected {
+  background: white;
+  -webkit-opacity: .65;
+  -moz-opacity: .65;
+  opacity: .65;
+  border: 2px solid white;
+}
+.mc-container .bio-thumb.selected {
+  border: 2px solid dark-gray;
+}
+.bridesmaid-select,
+.groomsmen-select {
+  font-family: 'Dancing Script', cursive;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+}
+.bridesmaid-select {
+  margin-right: 10px;
+}
+.groomsmen-select {
+  margin-left: 10px;
+}
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOutOpacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .2s;
+}
+.fade-out {
+  opacity: 0;
+  animation-name: fadeOutOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .2s;
+}
+.flickity-page-dots-inline {
+  position: relative;
+  display: inline;
+}
+/* smaller, dark, rounded square */
+.flickity-prev-next-button {
+  border-radius: 5px;
+  background: #333;
+  position: absolute;
+  top: 35%;
+}
+.flickity-prev-next-button:hover {
+  background: #73627b;
+}
+/* arrow color */
+.flickity-prev-next-button .arrow {
+  fill: white;
+}
+.flickity-prev-next-button.no-svg {
+  color: white;
+}
+/* position outside */
+.flickity-prev-next-button.previous {
+  left: -60px;
+}
+.flickity-prev-next-button.next {
+  right: -60px;
+}
+/* ****END GALLERY**** */
 /* #Blog
 ================================================== */
 .blog-listing .item {
@@ -4849,7 +4866,7 @@ div.dark_square #pp_full_res .pp_inline {
   .timeline .event_right .event_panel::before {
     display: none;
   }
-  .wedding-gifts li {
+  .wedding-gifts div {
     width: 100%;
     margin-left: 0;
     margin-right: 0;

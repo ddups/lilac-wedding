@@ -6,7 +6,7 @@
 */
 
 /*jslint browser:true, devel: true, this: true */
-/*global google, window, RichMarker, jQuery, mobileMenuTitle, hero100PercentHeight, twitter_username, map_canvas_id, map_color, map_initial_zoom, map_initial_latitude, map_initial_longitude, use_default_map_style, contact_form_success_msg, contact_form_error_msg, c_days, c_hours, c_minutes, c_seconds, countdownEndMsg, Waypoint, Freewall, map_markers  */
+/*global google, window, RichMarker, jQuery, mobileMenuTitle, hero100PercentHeight, twitter_username, contact_form_success_msg, contact_form_error_msg, c_days, c_hours, c_minutes, c_seconds, countdownEndMsg, Waypoint, Freewall, map_markers  */
 
 var Lilac;
 
@@ -17,6 +17,7 @@ var Lilac;
 
         Lilac = {
 
+            isDebug: true,
             initialized: false,
             mobMenuFlag: false,
             wookHandler: null,
@@ -26,12 +27,6 @@ var Lilac;
             mobileMenuTitle: mobileMenuTitle,
             hero100PercentHeight: hero100PercentHeight,
             twitter_username: twitter_username,
-            map_canvas_id: map_canvas_id,
-            map_color: map_color,
-            map_initial_zoom: map_initial_zoom,
-            map_initial_latitude: map_initial_latitude,
-            map_initial_longitude: map_initial_longitude,
-            use_default_map_style: use_default_map_style,
             contact_form_success_msg: contact_form_success_msg,
             contact_form_error_msg: contact_form_error_msg,
             c_days: c_days,
@@ -65,6 +60,7 @@ var Lilac;
                 /**
                  * Navigation
                  */
+                $tis.initNavigation();
                 $tis.navigation();
 
                 /**
@@ -90,22 +86,14 @@ var Lilac;
                 /**
                  * Create the Hero background image grid
                  */
+                $tis.initBgImages();
                 $tis.bgImageGrid();
 
                 /**
                  * Initialize Google Maps and populate with concerts locations
                  */
-                $tis.googleMap();
-
-                /**
-                 * Get latest tweets
-                 */
-                $tis.getLatestTweets();
-
-                /**
-                 * Get Instagram feed
-                 */
-                $tis.getInstagram();
+                // $tis.googleMap();
+                $tis.initMap();
 
                 /**
                  * Create PrettyPhoto links
@@ -120,6 +108,7 @@ var Lilac;
                 /**
                  * Create Gallery
                  */
+                $tis.initGalleryThumbnails(83);
                 $tis.createGallery();
 
                 /**
@@ -175,6 +164,52 @@ var Lilac;
                         $('#preloader').fadeOut(500);
                     }
                 }, 10);
+            },
+
+            initNavigation: function () {
+                let $home =
+                    $('<li/>')
+                        .append('<a href="#home">Home</a>');
+
+                let $ourStory =
+                    $('<li class="dropdown"/>')
+                        .append('<a href="#our-story" >Our Story<b class="caret"></b></a>')
+                        .append(
+                            $('<ul class="dropdown-menu"/>')
+                                .append('<li><a href="#photo-gallery">Photo Gallery</a></li>')
+                        );
+
+                let $weddingParties =
+                    $('<li class="dropdown"/>')
+                        .append('<a href="#wedding-parties" >Wedding Parties<b class="caret"></b></a>')
+                        .append(
+                            $('<ul class="dropdown-menu"/>')
+                                .append('<li><a href="#bridesmaids">Bridesmaids</a></li>')
+                                .append('<li><a href="#groomsmen">Groomsmen</a></li>')
+                                .append('<li><a href="#mcs">MCs</a></li>')
+                        );
+
+                let $theWedding =
+                    $('<li class="dropdown"/>')
+                        .append('<a href="#the-wedding" >The Wedding<b class="caret"></b></a>')
+                        .append(
+                            $('<ul class="dropdown-menu"/>')
+                                .append('<li><a href="#the-venue">The Venue</a></li>')
+                                .append('<li><a href="#accommodations">Accommodations</a></li>')
+                                .append('<li><a href="#details">Details</a></li>')
+                                .append('<li><a href="#gifts">Gift Registries</a></li>')
+                        );
+
+                let $rsvp =
+                    $('<li/>')
+                        .append('<a href="#rsvp">RSVP</a>');
+
+                $('.nav.navbar-nav')
+                    .append($home)
+                    .append($ourStory)
+                    .append($weddingParties)
+                    .append($theWedding)
+                    .append($rsvp);
             },
 
             navigation: function () {
@@ -359,13 +394,37 @@ var Lilac;
                 }
             },
 
+            initBgImages: function () {
+                var $tis = this;
+                let $freewall = $('#freewall');
+                if ($freewall.length) {
+                    let limitItem = 24;
+                    let items = [];
+                    for (var i = 1; i < limitItem; ++i) {
+                        let localPath = 'file:///F:/Pictures/WeddingGalleryPics/{imageSrc}.jpg';
+                        let prodPath = 'images/gallery/{imageSrc}.jpg';
+                        let imgBase = $tis.isDebug ? localPath : prodPath;
+                        let imgPath = imgBase.replace('{imageSrc}', `img (${i + 1})`);
+                        items.push(
+                            $('<div class="item"/>')
+                                .append(`<img src="${imgPath}"/>`)
+                        );
+                    }
+
+                    $.each(items.sort(function () { return 0.5 - Math.random() }), function (i, $item) {
+                        $freewall.append($item);
+                    });
+                }
+            },
+
             bgImageGrid: function () {
 
                 if ($('#freewall').length) {
                     $("#freewall .item").each(function () {
                         var $item = $(this);
                         $item.width(Math.floor(260 + 200 * Math.random()));
-                        $item.css({'background-image': 'url(' + $('>img', $item).attr('src') + ')'});
+                        let imgStr = $('>img', $item).attr('src');
+                        $item.css('background-image', `url('${imgStr}')`);
                         $('>img', $item).remove();
                     });
 
@@ -374,7 +433,7 @@ var Lilac;
                     var wall = new Freewall("#freewall");
                     wall.reset({
                         selector: '.item',
-                        animate: false,
+                        animate: true,
                         cellW: 20,
                         gutterX: 0,
                         gutterY: 0,
@@ -386,145 +445,23 @@ var Lilac;
                 }
             },
 
-            googleMap: function () {
-
-                if ($("#map_canvas").length === 0 || map_markers === 'undefined' || map_markers.length === 0) {
-                    return false;
-                }
-
-                var $tis = this,
-                    styles = [],
-                    styledMap,
-                    myLatlng,
-                    mapOptions,
-                    map,
-                    createMarker,
-                    i = 0;
-
-                if (!(/^\d|\.|-$/.test($tis.map_initial_latitude)) || !(/^\d|\.|-$/.test(map_initial_longitude))) {
-                    $tis.map_initial_latitude = map_markers[0].latitude;
-                    $tis.map_initial_longitude = map_markers[0].longitude;
-                }
-
-                myLatlng = new google.maps.LatLng($tis.map_initial_latitude, $tis.map_initial_longitude);
-
-                if (!this.use_default_map_style) {
-                    styles = [
-                        {
-                            stylers: [
-                                {hue: map_color},
-                                {saturation: -75},
-                                {lightness: 5}
-                            ]
-                        },
-                        {
-                            featureType: "administrative",
-                            elementType: "labels.text.fill",
-                            stylers: [
-                                {saturation: 20},
-                                {lightness: -70}
-                            ]
-                        },
-                        {
-                            featureType: "water",
-                            elementType: "geometry",
-                            stylers: [
-                                {saturation: -50},
-                                {lightness: 40}
-                            ]
-                        },
-                        {
-                            featureType: "road",
-                            elementType: "geometry",
-                            stylers: [
-                                {hue: map_color},
-                                {saturation: -100},
-                                {lightness: 0}
-                            ]
-                        },
-                        {
-                            featureType: "road.highway",
-                            elementType: "geometry",
-                            stylers: [
-                                {hue: map_color},
-                                {saturation: 5},
-                                {lightness: 5}
-                            ]
-                        },
-                        {
-                            featureType: "road",
-                            elementType: "geometry.stroke",
-                            stylers: [
-                                {saturation: 10},
-                                {lightness: 0}
-                            ]
-                        },
-                        {
-                            featureType: "road.highway",
-                            elementType: "geometry.stroke",
-                            stylers: [
-                                {saturation: 0},
-                                {lightness: 20}
-                            ]
-                        },
-                        {
-                            featureType: "transit",
-                            elementType: "geometry",
-                            stylers: [
-                                {hue: map_color},
-                                {saturation: 30},
-                                {lightness: -30}
-                            ]
-                        }
-                    ];
-                }
-
-                styledMap = new google.maps.StyledMapType(styles, {name: "Lilac"});
-
-                mapOptions = {
-                    center: myLatlng,
-                    zoom: $tis.map_initial_zoom,
-                    scrollwheel: false,
-                    panControl: false,
-                    mapTypeControl: false,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                        position: google.maps.ControlPosition.RIGHT_CENTER
-                    }
-                };
-
-                map = new google.maps.Map(document.getElementById($tis.map_canvas_id), mapOptions);
-                map.mapTypes.set('map_style', styledMap);
-                map.setMapTypeId('map_style');
-
-                createMarker = function (obj) {
-                    var lat = obj.latitude,
-                        lng = obj.longitude,
-                        icon = obj.icon,
-                        info = obj.infoWindow;
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: '<div class="infoWindow">' + info + '</div>'
-                    });
-
-                    var marker = new RichMarker({
-                        position: new google.maps.LatLng(lat, lng),
-                        map: map,
-                        anchor: 8,
-                        anchorPoint: new google.maps.Point(0, -40),
-                        shadow: 'none',
-                        content: '<div class="marker"><i class="fa ' + icon + '"></i></div>'
-                    });
-
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.open(map, marker);
-                    });
-                };
-
-                while (i < map_markers.length) {
-                    createMarker(map_markers[i]);
-                    i += 1;
-                }
+            initMap: function() {
+                let $theVenue = $('#the-venue .container').eq(0);
+                let src = 'https://www.google.com/maps/embed/v1/place?q=place_id:ChIJkYegvJ8Qs0wRNlkmMKc1RO4&key=AIzaSyB7VqycVSst6xsGOsbpgTpXAJESBrVKy-I';
+            
+                let $mapFrame = $(`<iframe class="map" src="${src}"/>`);
+                $theVenue.append($mapFrame);
+            
+                let uluru =
+                    { lat: 43.8148202, lng: -71.1444546 };
+                let map = new google.maps.Map($mapFrame.get(0), {
+                    zoom: 16,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
             },
 
             getLatestTweets: function () {
@@ -645,32 +582,110 @@ var Lilac;
                 }
             },
 
+            initGalleryThumbnails: function (numImages) {
+                var $tis = this;
+                let localPath = 'file:///F:/Pictures/WeddingGalleryPics/{image}.jpg';
+                let prodPath = 'images/gallery/{image}.jpg';
+                let imgBase = $tis.isDebug ? localPath : prodPath;
+                let $gallery = $('#gallery');
+                let srcs = [];
+                
+                for (var i = 1; i <= numImages; i++) {
+                    srcs.push(imgBase.replace('{image}', `img (${i + 1})`));
+                }
+                
+                srcs = srcs.sort(function () { return 0.5 - Math.random() });
+                let lazyImg = imgBase.replace('{image}', 'lazy');
+                for (var i = 0; i < numImages; i++) {
+                    let src = srcs[i];
+                    $gallery.append(
+                        $('<div/>')
+                            .addClass('thumb')
+                            .append(
+                                $('<img/>')
+                                    .attr('src', lazyImg)
+                                    .attr('data-flickity-lazyload', src)
+                            )
+                    )
+                }
+            },
+
             createGallery: function () {
-
-                var $gallery = $(".gallery-scroller"),
-                    scrolling = false;
-
-                $(".gallery-right").on('click', function () {
-                    if (scrolling) {
-                        return false;
-                    }
-
-                    scrolling = true;
-                    $gallery.animate({scrollLeft: $gallery.scrollLeft() + 380}, function () {
-                        scrolling = false;
-                    });
+                let $gallery = $('#gallery');
+                $gallery.flickity({
+                    // options
+                    cellAlign: 'center',
+                    contain: true,
+                    freeScroll: true,
+                    wrapAround: true,
+                    autoPlay: 5000,
+                    pauseAutoPlayOnHover: false,
+                    lazyLoad: 1,
+                    pageDots : false
                 });
+                
+                // updateImageGallery();
+            
+                let flkty = $gallery.data('flickity');
+                // $gallery.on( 'select.flickity', function() {
+                //     updateImageGallery();
+                // })
+                
+                // $gallery.on( 'staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
+                //     if ( !cellElement ) {
+                //         return;
+                //     }
+            
+                //     if (!$(cellElement).hasClass('is-selected')) {
+                //         flkty.select(cellIndex);
+                //     }
+                // });
+                
+                // add play & pause buttons
+                //                    <span class='control glyphicon glyphicon-pause'></span>
+            //    <span class='control glyphicon glyphicon-play'></span>
+            
+                let $controlBar = $('.slideshow-controls');
+                $controlBar.append(
+                    $('<span/>')
+                    .addClass('control')
+                    .addClass('glyphicon')
+                    .addClass('glyphicon-pause')
+                    .attr('title', 'Pause Slideshow')
+                    .on('click', function(){flkty.pausePlayer()})
+                ).append(
+                    $('<span/>')
+                    .addClass('control')
+                    .addClass('glyphicon')
+                    .addClass('glyphicon-play')
+                    .attr('title', 'Resume Slideshow')
+                    .on('click', function(){flkty.playPlayer()})
+                );
+                // var $gallery = $(".gallery-scroller"),
+                //     scrolling = false;
 
-                $(".gallery-left").on('click', function () {
-                    if (scrolling) {
-                        return false;
-                    }
+                // $(".gallery-right").on('click', function () {
+                //     if (scrolling) {
+                //         return false;
+                //     }
 
-                    scrolling = true;
-                    $gallery.animate({scrollLeft: $gallery.scrollLeft() - 380}, function () {
-                        scrolling = false;
-                    });
-                });
+                //     scrolling = true;
+                //     $gallery.animate({scrollLeft: $gallery.scrollLeft() + 380}, function () {
+                //         scrolling = false;
+                //     });
+                // });
+
+                // $(".gallery-left").on('click', function () {
+                //     if (scrolling) {
+                //         return false;
+                //     }
+
+                //     scrolling = true;
+                //     $gallery.animate({scrollLeft: $gallery.scrollLeft() - 380}, function () {
+                //         scrolling = false;
+                //     });
+                // });
+
             },
 
             curvedText: function () {
