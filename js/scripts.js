@@ -17,7 +17,7 @@ var Lilac;
 
         Lilac = {
 
-            isDebug: true,
+            isDebug: false,
             initialized: false,
             mobMenuFlag: false,
             wookHandler: null,
