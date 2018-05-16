@@ -6,7 +6,7 @@
 */
 
 /*jslint browser:true, devel: true, this: true */
-/*global google, window, RichMarker, jQuery, mobileMenuTitle, hero100PercentHeight, twitter_username, contact_form_success_msg, contact_form_error_msg, c_days, c_hours, c_minutes, c_seconds, countdownEndMsg, Waypoint, Freewall, map_markers  */
+/*global google, window, RichMarker, jQuery, mobileMenuTitle, hero100PercentHeight, twitter_username, contact_form_success_msg, contact_form_error_msg, c_days, c_hours, c_minutes, c_seconds, countdownEndMsg, friEvents, satEvents, sunEvents, Waypoint, Freewall  */
 
 var Lilac;
 
@@ -17,7 +17,7 @@ var Lilac;
 
         Lilac = {
 
-            isDebug: false,
+            isDebug: true,
             initialized: false,
             mobMenuFlag: false,
             wookHandler: null,
@@ -34,6 +34,9 @@ var Lilac;
             c_minutes: c_minutes,
             c_seconds: c_seconds,
             countdownEndMsg: countdownEndMsg,
+            friEvents: friEvents,
+            satEvents: satEvents,
+            sunEvents: sunEvents,
 
             init: function () {
 
@@ -94,6 +97,11 @@ var Lilac;
                  */
                 // $tis.googleMap();
                 $tis.initMap();
+
+                /**
+                 * Initialize Google Maps and populate with concerts locations
+                 */
+                $tis.createSchedule();
 
                 /**
                  * Create PrettyPhoto links
@@ -464,6 +472,68 @@ var Lilac;
                 });
             },
 
+            createSchedule: function() {
+                let $tis = this;
+                let $schedule = $('#schedule').find('.timeline:first');
+                
+                $schedule.append($tis.createDayLabel('Friday'));
+                $.each(friEvents, function (i, event) {
+                    let side = i % 2 == 0 ? 'left' : 'right';
+                    $schedule.append($tis.createEvent(event, side));
+                });
+
+                $schedule.append($tis.createDayLabel('Saturday'));
+                $.each(satEvents, function (i, event) {
+                    let side = i % 2 == 0 ? 'left' : 'right';
+                    $schedule.append($tis.createEvent(event, side));
+                });
+
+                $schedule.append($tis.createDayLabel('Sunday'));
+                $.each(sunEvents, function (i, event) {
+                    let side = i % 2 == 0 ? 'left' : 'right';
+                    $schedule.append($tis.createEvent(event, side));
+                });
+
+                /*
+                <div class="timeline_footer">
+                    <div class="punchline">And so the <span>Adventure<br>begins</span></div>
+                </div>
+                 */
+                $schedule.append(
+                    $('<div class="timeline_footer">')
+                        .append('<div class="punchline">And so the <span>Adventure<br>begins</span></div>')
+                );
+            },
+
+            createDayLabel(day) {
+                return $('<div/>')
+                    .attr({
+                        'class': 'year',
+                        'data-animation-direction': 'from-top',
+                        'data-animation-delay': '250',
+                    })
+                    .append(`<span class="ribbon">${day}</span>`);
+            },
+
+            createEvent(event, side) {
+               let oppSide = side === 'right' ? 'left' : 'right';
+
+               let $retDiv = $('<div/>')
+                    .attr({
+                        'class': `event_${side}`,
+                        'data-animation-direction': `from-${oppSide}`,
+                        'data-animation-delay': '250',
+                    })
+                    .append(
+                        $('<div class="event_panel"/>')
+                        // add a clock icon <i class="far fa-clock"></i>
+                            .append(`<h3><small>${event.time}</small> | ${event.title}</h3>`)
+                            .append(`<p>${event.text}</p>`)
+                    );
+
+                return $retDiv;
+            },
+
             getLatestTweets: function () {
 
                 var $tis = this;
@@ -596,7 +666,7 @@ var Lilac;
                 
                 srcs = srcs.sort(function () { return 0.5 - Math.random() });
                 let lazyImg = imgBase.replace('{image}', 'lazy');
-                for (var i = 0; i < numImages; i++) {
+                for (var i = 0; i <= numImages; i++) {
                     let src = srcs[i];
                     $gallery.append(
                         $('<div/>')

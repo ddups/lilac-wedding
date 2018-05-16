@@ -2181,6 +2181,14 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   -o-transition: width 0.3s;
   transition: width 0.3s;
 }
+.timeline .event_left .event_panel h3 small,
+.timeline .event_right .event_panel h3 small {
+  position: relative;
+  top: -4px;
+  font-family: 'Dancing Script', cursive;
+  color: #ad9fb3;
+  margin-top: 5px;
+}
 .timeline .event_left .event_panel:hover h3::after,
 .timeline .event_right .event_panel:hover h3::after {
   width: 120px;
@@ -2339,6 +2347,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   width: 100%;
   margin-top: 0;
   display: inline-block;
+  background-color: #fff;
 }
 .timeline_footer::before {
   content: "";

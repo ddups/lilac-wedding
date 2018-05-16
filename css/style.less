@@ -2220,9 +2220,16 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 					background-color:@color;
 					.opacity(0.8);
 					.transition(width 0.3s);
+                }
+                small{
+                    position: relative;
+					top: -4px;
+                    font-family:@headings-font-family;
+					color:@color;
+                    margin-top:5px;
 				}
 			}
-			
+            
 			&:hover h3::after{
 				width:120px;
 			}
@@ -2380,6 +2387,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 	width:100%;
 	margin-top:0;
 	display:inline-block;
+    background-color: #fff;
 
 	&::before{
 		content: "";
@@ -2418,7 +2426,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 		text-transform:uppercase;
 		font-family: @headings-font-family2;
 		color:@color;
-		margin-top:15px;
+        margin-top:15px;
 		
 		span{
 			font-family: @headings-font-family;
@@ -2555,8 +2563,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 				width:28%;
 				float:left;
 				padding-top:8px;
-				padding-right:18px;
-				
+                padding-right:18px;
 			}
 			
 			.info-right{
