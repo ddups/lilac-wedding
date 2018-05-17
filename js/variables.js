@@ -2,7 +2,9 @@
  * Javascript template variables
  */
 
-var	mobileMenuTitle = "Menu",					//The title of the mobile menu
+var	isDebug = true,
+
+    mobileMenuTitle = "Menu",					//The title of the mobile menu
 	
 	hero100PercentHeight = false,				//If true, the hero section (home) will be set with a minimum height of 100% window height. If false, hero height will be the height of its content.
 	
@@ -89,18 +91,108 @@ var	mobileMenuTitle = "Menu",					//The title of the mobile menu
     ],
     sunEvents = [
         {
-            time: '8:30 PM', 
+            time: '8:30 AM', 
             title: `Hangover Helper`,
             text: `Cure your hangover with bacon and eggs! And a little hair of the dog, of course...`,
         },
         {
-            time: '10:00 PM', 
+            time: '10:00 AM', 
             title: `Clean Up, Clean Up...`,
             text: `We hate to ask it, but there will be a lot of work to do to get the camp cleaned up. If you could spare at least a little of your time and help us, it would be the best wedding gift of all (other than large sums of cash)`,
         },
         {
-            time: '12:00 PM', 
+            time: '12:00 AM', 
             title: `That's a Wrap Folks!`,
             text: `Time to pack up and ship out... the party is over. We hope that you will be leaving with sore legs, great memories, and at least some your dignity still intact!`,
+        },
+    ],
+
+    // WEDDING PARTY VARIABLES
+    bridesmaids = [
+        {
+            name: 'Rachel Wojtasinski',
+            title: 'Matron of Honor',
+            bio: ``,
+            image: 'rachel.jpg',
+        },
+        {
+            name: 'Maura Notini',
+            title: 'Bridesmaid',
+            bio: ``,
+            image: 'maura.jpg',
+        },
+        {
+            name: 'Minta Notini',
+            title: 'Bridesmaid',
+            bio: ``,
+            image: 'minta.jpg',
+        },
+        {
+            name: 'Shelby Jutras',
+            title: 'Bridesmaid',
+            bio: ``,
+            image: 'shelby.jpg',
+        },
+        {
+            name: 'Laura Birnbaum',
+            title: 'Bridesmaid',
+            bio: ``,
+            image: 'laura.jpg',
+        },
+        {
+            name: 'Andrea Dow',
+            title: 'Bridesmaid',
+            bio: ``,
+            image: 'andrea.jpg',
+        },
+        {
+            name: 'Molly O\'Riordan',
+            title: 'Bridesmaid',
+            bio: ``,
+            image: 'molly.jpg',
+        },
+    ],
+    groomsmen = [
+        {
+            name: 'CJ Dupuis',
+            title: 'Best Man',
+            bio: ``,
+            image: 'cj.jpg',
+        },
+        {
+            name: 'Brian Beaulieu',
+            title: 'Groomsman',
+            bio: ``,
+            image: 'brian.jpg',
+        },
+        {
+            name: 'Tyler Leith',
+            title: 'Groomsman',
+            bio: ``,
+            image: 'tyler.jpg',
+        },
+        {
+            name: 'Eric Lecours',
+            title: 'Groomsman',
+            bio: ``,
+            image: 'eric.jpg',
+        },
+        {
+            name: 'Jake Schwartz',
+            title: 'Groomsman',
+            bio: ``,
+            image: 'jake.jpg',
+        },
+        {
+            name: 'Brady Page',
+            title: 'Groomsman',
+            bio: ``,
+            image: 'brady.jpg',
+        },
+        {
+            name: 'Jan Wojtasinski',
+            title: 'Groomsman',
+            bio: ``,
+            image: 'jan.jpg',
         },
     ];

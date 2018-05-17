@@ -79,6 +79,9 @@ h4 {
 h5 {
   font-size: 12pt;
 }
+p {
+  font-size: 16px;
+}
 /* #General
 ================================================== */
 html {
@@ -128,9 +131,9 @@ body {
   left: 0;
   top: 0;
   background: #73627b;
-  -webkit-opacity: 0.85;
-  -moz-opacity: 0.85;
-  opacity: 0.85;
+  -webkit-opacity: 0.9;
+  -moz-opacity: 0.9;
+  opacity: 0.9;
 }
 .bg-color-overlay ::selection {
   background: #fff;
@@ -1234,7 +1237,7 @@ fieldset[disabled] .btn.ribbon.active {
 .divider-bottom-5::after {
   content: "";
   width: 100%;
-  height: 200px;
+  height: 250px;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -1249,7 +1252,7 @@ fieldset[disabled] .btn.ribbon.active {
 .divider-bottom-5.divider-pattern::before {
   content: "";
   width: 100%;
-  height: 200px;
+  height: 250px;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -2064,11 +2067,15 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   content: "f";
   right: -38px;
 }
+.timeline div:nth-of-type(5),
+.timeline div:nth-of-type(3) {
+  padding: 20px 0 20px;
+}
 .timeline .event_left,
 .timeline .event_right {
   clear: left;
   float: left;
-  margin: 20px 0;
+  margin: 20px 0 50px;
   width: 50%;
   position: relative;
   z-index: 1;
@@ -2116,6 +2123,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 .timeline .event_left .event_panel,
 .timeline .event_right .event_panel {
+  cursor: pointer;
   border: 3px solid rgba(173, 159, 179, 0.5);
   margin: 0 70px 0 0;
   padding: 15px 35px 20px;
@@ -2189,14 +2197,19 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   color: #ad9fb3;
   margin-top: 5px;
 }
+.timeline .event_left .event_panel.closed h3,
+.timeline .event_right .event_panel.closed h3 {
+  margin-bottom: 0;
+}
 .timeline .event_left .event_panel:hover h3::after,
 .timeline .event_right .event_panel:hover h3::after {
   width: 120px;
 }
 .timeline .event_left .event_panel p,
 .timeline .event_right .event_panel p {
-  font-size: 10pt;
-  color: #adb1b5;
+  display: none;
+  font-size: 12pt;
+  color: #73777b;
   -webkit-transition: color 0.3s;
   -moz-transition: color 0.3s;
   -ms-transition: color 0.3s;
@@ -2238,6 +2251,9 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .timeline .event_right:hover .event_panel::before {
   background-color: #ad9fb3;
   z-index: 4;
+}
+.timeline .event_left:last-child {
+  margin-bottom: 10px;
 }
 .timeline .event_right {
   clear: right;
@@ -2529,6 +2545,18 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .location-info .event_right .event_panel {
   margin: 0 0 0 20px;
 }
+/* #Accommodations
+================================================== */
+#accommodations {
+  background-image: url("../images/camp-cody/cabins-3-1920x533.jpg");
+}
+#accommodations h2,
+#accommodations h3,
+#accommodations h4,
+#accommodations h5,
+#accommodations p {
+  position: relative;
+}
 /* #Bridesmaids & Groomsmen
 ================================================== */
 #bridesmaidsgroomsmen {
@@ -2629,8 +2657,12 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 #gifts h2 {
   text-align: center;
 }
+.wedding-gifts {
+  flex-wrap: wrap;
+}
 .wedding-gifts div {
   width: 35%;
+  height: 265px;
   display: flex;
   margin: 20px;
   overflow: hidden;

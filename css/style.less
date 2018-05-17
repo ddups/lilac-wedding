@@ -145,6 +145,9 @@ h5{
     font-size:12pt;
 }
 
+p {
+    font-size: 16px;
+}
 
 /* #General
 ================================================== */
@@ -203,7 +206,7 @@ body {
         left:0;
         top:0;
         background:@color-overlay;
-        .opacity(0.85);
+        .opacity(0.9);
     }
     
     ::selection {
@@ -1259,7 +1262,7 @@ fieldset[disabled] .btn.ribbon.active {
     &::after{
         content:"";
         width:100%;
-        height: 200px;
+        height: 250px;
         position:absolute;        
         left:0;
         bottom:0;
@@ -1279,7 +1282,7 @@ fieldset[disabled] .btn.ribbon.active {
         &::before{
             content:"";
             width:100%;
-            height:200px;
+            height:250px;
             position:absolute;        
             left:0;
             bottom:0;
@@ -2136,12 +2139,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
             
         }
     }
+
+    div:nth-of-type(5),
+    div:nth-of-type(3) {
+        padding: 20px 0 20px;
+    }
     
     .event_left,
     .event_right{
         clear: left;
         float: left;
-        margin: 20px 0;
+        margin: 20px 0 50px;
         width: 50%;
         position:relative;
         z-index:1;
@@ -2176,6 +2184,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
         }
         
         .event_panel{
+            cursor: pointer;
             border:3px solid fade(@color, 50%);
             margin: 0 70px 0 0;
             padding:15px 35px 20px;
@@ -2230,13 +2239,20 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
                 }
             }
             
+            &.closed {
+                h3 {
+                    margin-bottom: 0;
+                }
+            }
+
             &:hover h3::after{
                 width:120px;
             }
             
             p{
-                font-size:10pt;
-                color:@text-color-light;
+                display: none;
+                font-size:12pt;
+                color:@text-color;
                 .transition(color 0.3s);
             }
             
@@ -2274,6 +2290,10 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
         }
     }
     
+    .event_left:last-child {
+        margin-bottom: 10px;
+    }
+
     .event_right{
         clear: right;
         float: right;
@@ -2595,6 +2615,16 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     }
 }
 
+/* #Accommodations
+================================================== */
+#accommodations {
+    background-image: url("../images/camp-cody/cabins-3-1920x533.jpg");
+
+    h2, h3, h4, h5, p {
+        position: relative;
+    }
+}
+
 
 /* #Bridesmaids & Groomsmen
 ================================================== */
@@ -2700,8 +2730,10 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     }
 }
 .wedding-gifts {
+    flex-wrap: wrap;
     div {
         width: 35%;
+        height: 265px;
         display: flex;
         margin: 20px;
         overflow: hidden;

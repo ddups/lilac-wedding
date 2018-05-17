@@ -6,7 +6,7 @@
 */
 
 /*jslint browser:true, devel: true, this: true */
-/*global google, window, RichMarker, jQuery, mobileMenuTitle, hero100PercentHeight, twitter_username, contact_form_success_msg, contact_form_error_msg, c_days, c_hours, c_minutes, c_seconds, countdownEndMsg, friEvents, satEvents, sunEvents, Waypoint, Freewall  */
+/*global isDebug google, window, RichMarker, jQuery, mobileMenuTitle, hero100PercentHeight, twitter_username, contact_form_success_msg, contact_form_error_msg, c_days, c_hours, c_minutes, c_seconds, countdownEndMsg, friEvents, satEvents, sunEvents, bridesmaids, groomsmen, Waypoint, Freewall  */
 
 var Lilac;
 
@@ -17,7 +17,7 @@ var Lilac;
 
         Lilac = {
 
-            isDebug: true,
+            isDebug: isDebug,
             initialized: false,
             mobMenuFlag: false,
             wookHandler: null,
@@ -37,6 +37,8 @@ var Lilac;
             friEvents: friEvents,
             satEvents: satEvents,
             sunEvents: sunEvents,
+            bridesmaids: bridesmaids,
+            groomsmen: groomsmen,
 
             init: function () {
 
@@ -99,7 +101,7 @@ var Lilac;
                 $tis.initMap();
 
                 /**
-                 * Initialize Google Maps and populate with concerts locations
+                 * Create schedule of events
                  */
                 $tis.createSchedule();
 
@@ -111,6 +113,7 @@ var Lilac;
                 /**
                  * Create Owl Sliders
                  */
+                $tis.populateWeddingParty();
                 $tis.createOwlSliders();
 
                 /**
@@ -187,15 +190,15 @@ var Lilac;
                                 .append('<li><a href="#photo-gallery">Photo Gallery</a></li>')
                         );
 
-                let $weddingParties =
-                    $('<li class="dropdown"/>')
-                        .append('<a href="#wedding-parties" >Wedding Parties<b class="caret"></b></a>')
-                        .append(
-                            $('<ul class="dropdown-menu"/>')
-                                .append('<li><a href="#bridesmaids">Bridesmaids</a></li>')
-                                .append('<li><a href="#groomsmen">Groomsmen</a></li>')
-                                .append('<li><a href="#mcs">MCs</a></li>')
-                        );
+                // let $weddingParties =
+                //     $('<li class="dropdown"/>')
+                //         .append('<a href="#wedding-parties">Wedding Parties<b class="caret"></b></a>')
+                //         .append(
+                //             $('<ul class="dropdown-menu"/>')
+                //                 .append('<li><a href="#bridesmaids">Bridesmaids</a></li>')
+                //                 .append('<li><a href="#groomsmen">Groomsmen</a></li>')
+                //                 .append('<li><a href="#mcs">MCs</a></li>')
+                //         );
 
                 let $theWedding =
                     $('<li class="dropdown"/>')
@@ -204,7 +207,8 @@ var Lilac;
                             $('<ul class="dropdown-menu"/>')
                                 .append('<li><a href="#the-venue">The Venue</a></li>')
                                 .append('<li><a href="#accommodations">Accommodations</a></li>')
-                                .append('<li><a href="#details">Details</a></li>')
+                                .append('<li><a href="#the-details">The Details</a></li>')
+                                .append('<li><a href="#wedding-parties">Wedding Parties</a></li>')
                                 .append('<li><a href="#gifts">Gift Registries</a></li>')
                         );
 
@@ -215,8 +219,8 @@ var Lilac;
                 $('.nav.navbar-nav')
                     .append($home)
                     .append($ourStory)
-                    .append($weddingParties)
                     .append($theWedding)
+                    // .append($weddingParties)
                     .append($rsvp);
             },
 
@@ -225,7 +229,7 @@ var Lilac;
                 $('.nav li a').on('click', function (event) {
                     var navActive = $(this),
                         scroll = 0;
-					/*
+					/*                                  ********TODO why is this commented?
 					if ($.browser.mobile){
 						$(".nav .dropdown-menu").attr('style', '');
 					
@@ -409,7 +413,7 @@ var Lilac;
                     let limitItem = 24;
                     let items = [];
                     for (var i = 1; i < limitItem; ++i) {
-                        let localPath = 'file:///F:/Pictures/WeddingGalleryPics/{imageSrc}.jpg';
+                        let localPath = 'file:///F:/Documents/Wedding%20Site/WeddingGalleryPics/{imageSrc}.jpg';
                         let prodPath = 'images/gallery/{imageSrc}.jpg';
                         let imgBase = $tis.isDebug ? localPath : prodPath;
                         let imgPath = imgBase.replace('{imageSrc}', `img (${i + 1})`);
@@ -501,7 +505,7 @@ var Lilac;
                  */
                 $schedule.append(
                     $('<div class="timeline_footer">')
-                        .append('<div class="punchline">And so the <span>Adventure<br>begins</span></div>')
+                        .append('<div class="punchline">And then the real <span>Adventure<br>begins</span></div>')
                 );
             },
 
@@ -525,10 +529,19 @@ var Lilac;
                         'data-animation-delay': '250',
                     })
                     .append(
-                        $('<div class="event_panel"/>')
+                        $('<div class="event_panel closed"/>')
                         // add a clock icon <i class="far fa-clock"></i>
                             .append(`<h3><small>${event.time}</small> | ${event.title}</h3>`)
                             .append(`<p>${event.text}</p>`)
+                            .hover((event) => {
+                                let $panel = $(event.target).closest('.event_panel');
+                                if ($panel.hasClass('closed')) {
+                                    $panel.removeClass('closed');
+                                    $panel.find('p').slideToggle();
+                                } else {
+                                    $panel.find('p').slideToggle(() => $panel.addClass('closed'));
+                                }
+                            })
                     );
 
                 return $retDiv;
@@ -647,14 +660,53 @@ var Lilac;
                             [1183, 4],
                             [1440, 4],
                             [1728, 4]
-                        ]
+                        ],
+                        nav: true
                     });
                 }
             },
 
+            populateWeddingParty: function () {
+                let $tis = this;
+                let localPath = 'file:///F:/Documents/Wedding%20Site/WeddingBioPhotos/{image}';
+                let prodPath = 'images/bio-pics/{image}';
+                let imgPath = isDebug ? localPath : prodPath;
+
+                // loop over bridesmaids
+                let delay = 50;
+                let $bridesmaids = $('#bridesmaids-slider');
+                $.each(bridesmaids, (i, b) => {
+                    delay = (i < 4) ? delay + 200 : 0;
+                    let image = imgPath.replace('{image}', `bridesmaids/${b.image}`);
+                    $bridesmaids.append($tis.createBioElement(b.name, b.title, image, delay));
+                });
+
+                // loop over groomsmen
+                delay = 50;
+                let $groomsmen = $('#groomsmen-slider');
+                $.each(groomsmen, (i, g) => {
+                    delay = (i < 4) ? delay + 200 : 0;
+                    let image = imgPath.replace('{image}', `groomsmen/${g.image}`);
+                    $groomsmen.append($tis.createBioElement(g.name, g.title, image, delay));
+                });
+            },
+
+            createBioElement: function(name, title, image, delay) {
+                let animationDelay = delay ? ` data-animation-delay="${delay}"` : '';
+                return $(`<div class="item" data-animation-direction="from-bottom" ${animationDelay}/>`)
+                    .append(
+                        $('<div class="image"/>')
+                            .append($('<div class="info"/>')
+                                .append($('<h3/>').text(name))
+                                .append($('<span class="title"/>').text(title))
+                            )
+                            .append($(`<img src="${image}" alt=""/>`))
+                    );
+            },
+
             initGalleryThumbnails: function (numImages) {
                 var $tis = this;
-                let localPath = 'file:///F:/Pictures/WeddingGalleryPics/{image}.jpg';
+                let localPath = 'file:///F:/Documents/Wedding%20Site/WeddingGalleryPics/{image}.jpg';
                 let prodPath = 'images/gallery/{image}.jpg';
                 let imgBase = $tis.isDebug ? localPath : prodPath;
                 let $gallery = $('#gallery');
@@ -694,27 +746,7 @@ var Lilac;
                     pageDots : false
                 });
                 
-                // updateImageGallery();
-            
                 let flkty = $gallery.data('flickity');
-                // $gallery.on( 'select.flickity', function() {
-                //     updateImageGallery();
-                // })
-                
-                // $gallery.on( 'staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
-                //     if ( !cellElement ) {
-                //         return;
-                //     }
-            
-                //     if (!$(cellElement).hasClass('is-selected')) {
-                //         flkty.select(cellIndex);
-                //     }
-                // });
-                
-                // add play & pause buttons
-                //                    <span class='control glyphicon glyphicon-pause'></span>
-            //    <span class='control glyphicon glyphicon-play'></span>
-            
                 let $controlBar = $('.slideshow-controls');
                 $controlBar.append(
                     $('<span/>')
