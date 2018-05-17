@@ -713,11 +713,11 @@ var Lilac;
                 let srcs = [];
                 
                 for (var i = 1; i <= numImages; i++) {
-                    srcs.push(imgBase.replace('{image}', `img (${i + 1})`));
+                    srcs.push(imgBase.replace('{image}', `img (${i})`));
                 }
                 
                 srcs = srcs.sort(function () { return 0.5 - Math.random() });
-                let lazyImg = imgBase.replace('{image}', 'lazy');
+                let lazyImg = 'images/lazy.jpg';
                 for (var i = 0; i <= numImages; i++) {
                     let src = srcs[i];
                     $gallery.append(
