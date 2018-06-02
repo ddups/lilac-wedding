@@ -1232,7 +1232,7 @@ fieldset[disabled] .btn.ribbon.active {
   z-index: 0;
 }
 .divider-bottom-5 {
-  padding-bottom: 20px;
+  padding-bottom: 200px;
 }
 .divider-bottom-5::after {
   content: "";
@@ -2565,6 +2565,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .bridesmaids-groomsmen-buttons .btn {
   margin: 10px;
 }
+.gallery-slider .item,
 .bridesmaids-groomsmen-slider .item {
   position: relative;
   margin: 0 auto 35px;
@@ -2575,6 +2576,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+.gallery-slider .item .image,
 .bridesmaids-groomsmen-slider .item .image {
   width: 100%;
   max-height: 260px;
@@ -2589,6 +2591,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   -o-transition: background-size 0.3s ease-out;
   transition: background-size 0.3s ease-out;
 }
+.gallery-slider .item .image img,
 .bridesmaids-groomsmen-slider .item .image img {
   width: 100%;
   -webkit-transition: all 0.3s ease-out;
@@ -2597,6 +2600,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
+.gallery-slider .item .image .info,
 .bridesmaids-groomsmen-slider .item .image .info {
   position: absolute;
   top: 0;
@@ -2623,25 +2627,30 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   -moz-box-shadow: inset 0px 0px 0px 2px rgba(173, 159, 179, 0.5);
   box-shadow: inset 0px 0px 0px 2px rgba(173, 159, 179, 0.5);
 }
+.gallery-slider .item .image .info h3,
 .bridesmaids-groomsmen-slider .item .image .info h3 {
   color: #ad9fb3;
   margin-top: 70px;
   font-size: 24pt;
 }
+.gallery-slider .item .image .info .title,
 .bridesmaids-groomsmen-slider .item .image .info .title {
   display: block;
   color: #73777b;
   text-transform: uppercase;
 }
+.gallery-slider .item:hover .image,
 .bridesmaids-groomsmen-slider .item:hover .image {
   background-size: auto 120%;
 }
+.gallery-slider .item:hover .image img,
 .bridesmaids-groomsmen-slider .item:hover .image img {
   -webkit-transform: scale(1.3);
   -moz-transform: scale(1.3);
   -o-transform: scale(1.3);
   transform: scale(1.3);
 }
+.gallery-slider .item:hover .image > .info,
 .bridesmaids-groomsmen-slider .item:hover .image > .info {
   visibility: visible;
   -webkit-opacity: 1;
@@ -2649,6 +2658,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   opacity: 1;
   border: 10px solid transparent;
 }
+.gallery-slider .item.disabled,
 .bridesmaids-groomsmen-slider .item.disabled {
   display: none;
 }
@@ -3838,6 +3848,27 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 /* #RSVP
 ================================================== */
+#other-guest-form h3 {
+  margin-bottom: 5px;
+}
+#other-guest-form h5 {
+  margin-bottom: 25px;
+}
+.paypal-btn {
+  margin: 0 auto;
+  padding: 8px 16px;
+  width: 200px;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: left;
+  white-space: nowrap;
+  border: 2px solid #778aca;
+  border-radius: 4px;
+  color: #103D8C;
+  background: #C1CAE7 url('../images/paypal-btn.png') right top no-repeat;
+  background-size: contain;
+}
 .form-wrap {
   position: relative;
   border: 3px solid rgba(173, 159, 179, 0.5);
@@ -5029,26 +5060,3 @@ div.dark_square #pp_full_res .pp_inline {
   }
 }
 /* Retina Images ***************************************************/
-@media (min-resolution: 144dpi) {
-  .divider-bottom-1 {
-    padding-bottom: 580px;
-  }
-  .divider-bottom-1::after {
-    height: 482px;
-    background-image: url('../images/divider_1@2x.png');
-  }
-  .divider-bottom-2 {
-    padding-bottom: 970px;
-  }
-  .divider-bottom-2::after {
-    height: 1564px;
-    background-image: url('../images/divider_2@2x.png');
-  }
-  .divider-top-2 {
-    padding-bottom: 480px;
-  }
-  .divider-top-2::before {
-    height: 482px;
-    background-image: url('../images/divider_5@2x.png');
-  }
-}

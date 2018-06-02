@@ -10,7 +10,7 @@
 	If none of the fields were set as emailTo, fromName, fromEmail
 	or subject, the default values (below) will be used.
 */
-$emailto = 'youremail@yourdomain.com'; 	// Insert the email address that will receive the messages
+$emailto = 'derek.m.dupuis@gmail.com'; 	// Insert the email address that will receive the messages
 $fromName = 'Contact';					// Insert a default "Name" email address (this field will be displayed in the email header)
 $fromEmail = 'default@yourdomain.com';	// Insert a default "From" email address (this field will be displayed in the email header)
 $subject = 'Lilac Contact Form';		// Insert a default contact form subject

@@ -150,11 +150,26 @@
         
         
         <!-- BEGIN GALLERY SECTION -->
-        <section id="photo-gallery" class="divider-bottom-5 divider-pattern divider-bg-color">
+        <!-- <section id="photo-gallery" class="divider-bottom-5 divider-pattern divider-bg-color">
             <div class="container">
                 <h1 class="section-title padding-top-1em">Photo Gallery</h1>
                 <div class="slideshow-controls"></div>
                 <div id="gallery" class="block-center"></div>
+            </div>
+        </section> -->
+        <section id="photo-gallery" class="divider-bottom-5 divider-pattern divider-bg-color">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-sm-12">
+                        <div class="gallery-control-buttons center">
+                        </div>
+                        <div id="gallery-slider" class="owl-carousel gallery-slider">
+                        </div>
+                    </div> -->
+                    <br><br>
+                    <h1 class="center">Photo Gallery Coming Soon!!</h1>
+                    <br><br><br><br><br><br><br><br>
+                </div>
             </div>
         </section>
         <!-- END GALLERY SECTION -->        
@@ -298,8 +313,8 @@
                                 <section class="highlighted">
                                     <h3><i class="icon icon-arrow-right"></i>Will you be attending the wedding?<i class="icon icon-arrow-left"></i></h3>
                                     <div data-value="attending_wedding" class="radio-lilac col-sm-12">
-                                        <button class="btn btn-default active" data-value="yes"><i class="fa fa-smile-o"></i>Yes</button>
-                                        <button class="btn btn-default" data-value="no"><i class="fa fa-frown-o"></i>No</button>
+                                        <button id="attending-btn" class="btn btn-default" data-value="yes"><i class="fa fa-smile-o"></i>Yes</button>
+                                        <button id="not-attending-btn" class="btn btn-default" data-value="no"><i class="fa fa-frown-o"></i>No</button>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" name="Name" placeholder="YOUR NAME*" class="form-control required fromName" />
@@ -309,8 +324,35 @@
                                     </div>
                                 </section>
                                 
-                                <section>
-                                    <h3><i class="icon icon-arrow-right"></i>Who else is comming with you?<i class="icon icon-arrow-left"></i></h3>
+                                <section id="lodging-form">
+                                    <h3><i class="icon icon-arrow-right"></i>Will you be staying at the camp?<i class="icon icon-arrow-left"></i></h3>
+                                    <div data-value="attending_wedding" class="radio-lilac col-sm-12">
+                                        <button id="staying-btn" class="btn btn-default" data-value="yes">Yes</button>
+                                        <button id="not-staying-btn" class="btn btn-default active" data-value="no">No</button>
+                                    </div>
+                                    <div id="staying-form" class="row">
+                                        <div class="col-sm-6">
+                                            <h4>How many nights?</h4>
+                                            <h5>(One = Saturday only)</h5>
+                                        </div>
+                                        <div class="radio-lilac col-sm-6" data-value="need_linens">
+                                            <button class="btn btn-default active" data-value="1">One</button>
+                                            <button class="btn btn-default" data-value="2">Two</button>
+                                        </div>
+        
+                                        <div class="col-sm-6">
+                                            <h4>Do you want to rent a linen package?</h4>
+                                        </div>
+                                        <div class="radio-lilac col-sm-6" data-value="need_linens">
+                                            <button class="btn btn-default" data-value="yes">Yes</button>
+                                            <button class="btn btn-default active" data-value="no">No</button>
+                                        </div>
+                                    </div>
+                                </section>
+    
+                                <section id="other-guest-form" class="highlighted">
+                                    <h3><i class="icon icon-arrow-right"></i>Are you bringing anyone with you?<i class="icon icon-arrow-left"></i></h3>
+                                    <h5>(Are you RSVPing for anyone else?)</h5>
                                     <div class="col-md-8">
                                         <input type="text" name="guest" id="guest" placeholder="GUEST NAME" class="form-control" />
                                     </div>
@@ -318,18 +360,23 @@
                                         <button id="add_guest" class="btn btn-color add_button" data-input="guest" data-wrapper="guest_list">+ Add Guest</button>
                                     </div>
                                     <div id="guest_list" class="add_list col-md-12" data-count="2">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="guest_1" value="Jessica Johnson" />
-                                            <span class="input-group-addon"><i class="fa fa-trash"></i></span>
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="guest_2" value="John Roberts" />
-                                            <span class="input-group-addon"><i class="fa fa-trash"></i></span>
-                                        </div>
                                     </div>
                                 </section>
                                 
-                                <section class="highlighted">
+                                <section>
+                                    <!-- Move this to JS -->
+                                    <div id="payment-info" class="row">
+                                        <div class="col-sm-12">
+                                            <h5>To pay for your lodging online through PayPal, click the link below.</h5>
+                                            <a target="_blank" href="http://www.paypal.me/EmmaAndDerekWedding" class="paypal-btn">Pay
+                                                us on </a>
+                                            <h5>If you would prefer to pay by check, please make a check out to</h5>
+                                            <h4>Derek Dupuis</h4>
+                                            <h5>in the amount of</h5>
+                                            <h4>$50</h4>
+                                        </div>
+                                    </div>
+    
                                     <div class="col-sm-12">
                                         <textarea name="Message" placeholder="LEAVE A NOTE (OPTIONAL)" class="form-control"></textarea> 
                                         <div class="form_status_message"></div>

@@ -114,13 +114,13 @@ var Lilac;
                  * Create Owl Sliders
                  */
                 $tis.populateWeddingParty();
-                $tis.createOwlSliders();
 
                 /**
                  * Create Gallery
                  */
-                $tis.initGalleryThumbnails(83);
-                $tis.createGallery();
+                // $tis.initGalleryThumbnails(83);
+                // $tis.createGallery();
+                $tis.createOwlSliders();
 
                 /**
                  * Create Countdown
@@ -136,6 +136,11 @@ var Lilac;
                  * Start NiceScroll
                  */
                 $tis.startNiceScroll();
+
+                /**
+                 * Init RSVP form
+                 */
+                $tis.initRSVPForm();
             },
 
             events: function () {
@@ -189,16 +194,6 @@ var Lilac;
                             $('<ul class="dropdown-menu"/>')
                                 .append('<li><a href="#photo-gallery">Photo Gallery</a></li>')
                         );
-
-                // let $weddingParties =
-                //     $('<li class="dropdown"/>')
-                //         .append('<a href="#wedding-parties">Wedding Parties<b class="caret"></b></a>')
-                //         .append(
-                //             $('<ul class="dropdown-menu"/>')
-                //                 .append('<li><a href="#bridesmaids">Bridesmaids</a></li>')
-                //                 .append('<li><a href="#groomsmen">Groomsmen</a></li>')
-                //                 .append('<li><a href="#mcs">MCs</a></li>')
-                //         );
 
                 let $theWedding =
                     $('<li class="dropdown"/>')
@@ -632,23 +627,25 @@ var Lilac;
 
             createOwlSliders: function () {
 
-                if ($(".timeline-gallery").length) {
-                    $(".timeline-gallery").owlCarousel({
-                        navigation: true,
-                        navigationText: false,
-                        pagination: false,
-                        itemsCustom: [
-                            [0, 1],
-                            [392, 2],
-                            [596, 3],
-                            [751, 2],
-                            [975, 3],
-                            [1183, 3],
-                            [1440, 3],
-                            [1728, 3]
-                        ]
-                    });
-                }
+                // if ($(".gallery-slider").length) {
+                //     $(".gallery-slider").owlCarousel({
+                //         dots: false,
+                //         loop: true,
+                //         autoplay: true,
+                //         autoplaySpeed: 5000,
+                //         autoplayHoverPause: true,
+                //         margin: 10,
+                //         itemsCustom: [
+                //             [0, 1],
+                //             [590, 2],
+                //             [751, 2],
+                //             [975, 3],
+                //             [1183, 4],
+                //             [1440, 5],
+                //             [1728, 5]
+                //         ]
+                //     });
+                // }
 
                 if ($(".bridesmaids-groomsmen-slider").length) {
                     $(".bridesmaids-groomsmen-slider").owlCarousel({
@@ -709,7 +706,7 @@ var Lilac;
                 let localPath = 'file:///F:/Documents/Wedding%20Site/WeddingGalleryPics/{image}.jpg';
                 let prodPath = 'images/gallery/{image}.jpg';
                 let imgBase = $tis.isDebug ? localPath : prodPath;
-                let $gallery = $('#gallery');
+                let $gallery = $('#gallery-slider');
                 let srcs = [];
                 
                 for (var i = 1; i <= numImages; i++) {
@@ -720,16 +717,20 @@ var Lilac;
                 let lazyImg = 'images/lazy.jpg';
                 for (var i = 0; i <= numImages; i++) {
                     let src = srcs[i];
-                    $gallery.append(
-                        $('<div/>')
-                            .addClass('thumb')
-                            .append(
-                                $('<img/>')
-                                    .attr('src', lazyImg)
-                                    .attr('data-flickity-lazyload', src)
-                            )
-                    )
+                    $gallery.append($tis.createGalleryElement(src));
                 }
+            },
+
+            createGalleryElement: function (image) {
+                return $(`<div class="item" data-animation-direction="from-bottom"/>`)
+                .append(
+                    $('<div class="image"/>')
+                        .append($('<div class="info"/>')
+                            .append($('<h3/>').text("FUCK"))
+                            .append($('<span class="title"/>').text("YOU"))
+                        )
+                        .append($(`<img src="${image}" alt=""/>`))
+                );
             },
 
             createGallery: function () {
@@ -871,6 +872,34 @@ var Lilac;
                 });
             },
 
+            initRSVPForm: function () {
+                // add listners on button press
+                $('#lodging-form').hide();
+                $('#other-guest-form').hide();
+                $('#staying-form').hide();
+                $('#payment-info').hide();
+
+                $('#attending-btn').click(function () {
+                    $('#lodging-form').fadeIn();
+                    $('#other-guest-form').fadeIn();
+                });
+
+                $('#not-attending-btn').click(function () {
+                    $('#lodging-form').hide();
+                    $('#other-guest-form').hide();
+                });
+
+                $('#staying-btn').click(function () {
+                    $('#staying-form').fadeIn();
+                    $('#payment-info').fadeIn();
+                });
+
+                $('#not-staying-btn').click(function () {
+                    $('#staying-form').hide();
+                    $('#payment-info').hide();
+                });
+            },
+            
             windowResize: function () {
 
                 var $tis = this;
