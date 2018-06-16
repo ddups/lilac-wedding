@@ -1,4 +1,7 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
+set_error_handler("var_dump");
 
 /*
 	The variables below can be overridden by setting the contact 
@@ -13,7 +16,7 @@
 $emailto = 'derek.m.dupuis@gmail.com'; 	// Insert the email address that will receive the messages
 $fromName = 'Contact';					// Insert a default "Name" email address (this field will be displayed in the email header)
 $fromEmail = 'default@yourdomain.com';	// Insert a default "From" email address (this field will be displayed in the email header)
-$subject = 'Lilac Contact Form';		// Insert a default contact form subject
+$subject = 'Wedding RSVP Contact Form';		// Insert a default contact form subject
 
 
 

@@ -39,6 +39,8 @@ var Lilac;
             sunEvents: sunEvents,
             bridesmaids: bridesmaids,
             groomsmen: groomsmen,
+            amountOwed: 50,
+            guestCount: 1,
 
             init: function () {
 
@@ -882,11 +884,15 @@ var Lilac;
                 $('#attending-btn').click(function () {
                     $('#lodging-form').fadeIn();
                     $('#other-guest-form').fadeIn();
+                    if ($('#staying-btn').hasClass('active')) {
+                        $('#payment-info').show();
+                    }
                 });
 
                 $('#not-attending-btn').click(function () {
                     $('#lodging-form').hide();
                     $('#other-guest-form').hide();
+                    $('#payment-info').hide();
                 });
 
                 $('#staying-btn').click(function () {
@@ -1093,7 +1099,7 @@ var Lilac;
             },
 
             buttons: function () {
-
+                var $tis = this;
                 var first = true;
 
                 $('.nav-logo, .scrollto').on('click', function (event) {
@@ -1149,6 +1155,55 @@ var Lilac;
                     $t.addClass("active");
                 });
 
+                /**************
+                 * 
+                 */
+
+                $tis.updateAmountOwed();
+
+                let oneNight = true;
+                let linens = false;
+                
+                $('#one-night').click(() => {
+                    if (!oneNight) {
+                        let linens = $('#linen-yes').hasClass('active')
+                            ? 15 : 0;
+                        $tis.subtractAmount(50 + linens);
+                        oneNight = true;
+                    }
+                });
+        
+                $('#two-nights').click(() => {
+                    if (oneNight) {
+                        let linens = $('#linen-yes').hasClass('active')
+                            ? 15 : 0;
+                        $tis.addAmount(50 + linens);
+                        oneNight = false;
+                    }
+                });
+        
+                $('#linen-yes').click(() => {
+                    if (!linens) {
+                        let multiplier = $('#two-nights').hasClass('active') 
+                            ? 2 : 1;
+                        $tis.addAmount(15 * multiplier);
+                        linens = true;
+                    }
+                });
+        
+                $('#linen-no').click(() => {
+                    if (linens) {
+                        let multiplier = $('#two-nights').hasClass('active') 
+                            ? 2 : 1;
+                        $tis.subtractAmount(15 * multiplier);
+                        linens = false;
+                    }
+                });
+        
+                /*************
+                 * 
+                 */
+
                 // Capture "Add guest" button click event.
                 $(".add_button").on('click', function (e) {
                     e.preventDefault();
@@ -1164,7 +1219,8 @@ var Lilac;
                         $input.addClass("invalid");
                         return false;
                     }
-
+                    $tis.guestCount++;
+                    $tis.updateAmountOwed();
                     html = '<div class="input-group">' +
                             '<input type="text" class="form-control" name="' + $t.data("input") + '_' + count + '" value="' + val + '" />' +
                             '<span class="input-group-addon"><i class="fa fa-trash"></i></span>' +
@@ -1178,7 +1234,28 @@ var Lilac;
                 // Capture "Remove guest" button click event.
                 $('.add_list').on('click', '.input-group-addon', function () {
                     $(this).closest(".input-group").remove();
+                    $tis.guestCount--;
+                    $tis.updateAmountOwed();
                 });
+            },
+
+            addAmount: function (amount) {
+                this.amountOwed += amount;
+                this.updateAmountOwed();
+            },
+
+            subtractAmount: function (amount) {
+                this.amountOwed -= amount;
+                this.updateAmountOwed();
+            },
+
+            updateAmountOwed: function () {
+                let $tis = this,
+                    amountOwed = $tis.amountOwed * $tis.guestCount;
+                let href='http://www.paypal.me/EmmaAndDerekWedding/' + amountOwed;
+                $('.amount-owed').text(amountOwed);
+                $('#paypal-btn').attr('href', href);
+                $('#form-amount-owed').attr('value', amountOwed);
             },
 
             animateElems: function () {

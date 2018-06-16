@@ -32,6 +32,10 @@
 
 /* Variables
 ================================================== */
+// DEFAULT VALUES - DON'T DELETE
+// @color: #ad9fb3;
+// @text-color: #73777b;
+// @text-color-light: #adb1b5;
 @color: #ad9fb3;
 @text-color: #73777b;
 @text-color-light: #adb1b5;
@@ -507,7 +511,6 @@ h2.section-title{
 .section-desc{
     clear:both;
     margin-bottom:40px !important;
-    text-align:center;
 }
 
 .bg-color,
@@ -1993,8 +1996,8 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .balloon-left,
 .balloon-right{
     position:absolute;
-    top:-32px;
-    left:-88px;
+    top: -65px;
+    left: -140px;
     font-family:@headings-font-family;
     font-size:50pt;
     color:#fff;
@@ -2034,7 +2037,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .balloon-right{
     left:auto;
-    right:-88px;
+    right:-140px;
     
     &::before{
         .transform(rotate(25deg));
@@ -2622,6 +2625,14 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
     h2, h3, h4, h5, p {
         position: relative;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+        &:hover {
+            color: #778aca;
+        }
     }
 }
 
@@ -4035,19 +4046,27 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 
 .paypal-btn {
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 8px 16px;
     width: 200px;
+    height: 80px;
     display: block;
     overflow: hidden;
     text-decoration: none;
-    text-align: left;
+    text-align: center;
     white-space: nowrap;
     border: 2px solid #778aca;
     border-radius: 4px;
     color: #103D8C;
-    background: #C1CAE7 url('../images/paypal-btn.png') right top no-repeat;
+    background: #C1CAE7 url(../images/paypal-btn2.png) bottom no-repeat;
     background-size: contain;
+
+    &:hover, &:focus {
+        cursor: pointer;
+        text-decoration: none;
+        color: #103D8C;
+        border-color: #103D8C;
+    }
 }
   
 
@@ -5429,5 +5448,6 @@ div.lilac #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline {
 //     }
 // }
 
-
-
+#payment-info p {
+    margin-top: 10px
+}
